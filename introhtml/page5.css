@@ -1,0 +1,19 @@
+nav {
+    background-color: gainsboro;
+    border-radius: 10px;
+    padding: 10px;
+}
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul li {
+    display: inline;
+    padding: 10px;
+}
+li{
+    font-size: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+}
