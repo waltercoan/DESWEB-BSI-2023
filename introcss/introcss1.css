@@ -2,4 +2,22 @@ div {
     width: 150px;
     height: 150px;
     background-color: yellowgreen;
+    /*padding: 50px;*/
+    padding-top: 50px;
+    padding-right: 20px;
+    padding-bottom: 90px;
+    padding-left: 40px;
+    /*border: 5px black solid;*/
+    border-top: 30px black solid;
+    border-right: 10px blueviolet dotted;
+    border-bottom: 30px red dashed;
+    border-left: 20px fuchsia solid;
+
+    margin: 100px;
+}
+p {
+    width: 150px;
+    height: 150px;
+    background-color: orange;
+    margin: 0px;
 }
