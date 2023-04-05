@@ -1,0 +1,12 @@
+.base{
+    width: 400px;
+    height: 400px;
+    border: solid 3px;
+    background-color: yellowgreen;
+}
+.filho1, .filho2{
+    background-color: blue;
+    width: 120px;
+    height: 220px;
+    border: solid 3px;
+}
