@@ -1,0 +1,16 @@
+div {
+    width: 180px;
+    height: 40px;
+    border: 1px solid black;
+}
+div.dois{
+    background-color: aqua;
+    position: relative;
+    left: 60px;
+    top: 15px;
+}
+div.tres{
+    position: relative;
+    background-color: blueviolet;
+    top: -30px;
+}
