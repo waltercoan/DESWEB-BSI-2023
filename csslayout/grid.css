@@ -1,0 +1,35 @@
+.container{
+    background-color: beige;
+    display: grid;
+    /*grid-template-columns: 1fr 2fr 2fr 1fr;*/
+    grid-gap: 10px;
+    grid-template:
+        'item1 item1 item1'
+        'item2 . item4'
+        'item3 item3 item3'
+        ;
+}
+
+.container > div {
+    border: 1px solid black;
+}
+.item1 {
+    grid-area: item1;
+    display: flex;
+    justify-content: center;
+}
+.item2 {
+    grid-area: item2;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.item3 {
+    grid-area: item3;
+    height: 300px;
+}
+.item4 {
+    grid-area: item4;
+}
+
