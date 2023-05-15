@@ -6,7 +6,14 @@ app = Flask(__name__)
 def index():
     #dados = request.args
     usuario = request.form.get('usuario')
-    return f"<h1>{usuario}</h1>"
+    senha = request.form.get('senha')
+    datanascimento = request.form.get('datanascimento')
+    chocolate = request.form.get('chocolate')
+    coquinha = request.form.get('coquinha')
+    sexo = request.form.get('sexo')
+    return f"<h1>{usuario}</h1><h1>{senha}</h1> \
+        {datanascimento}Chocolate: {chocolate} \
+        Coquinha: {coquinha} Sexo: {sexo}"
 
 @app.route("/formulario")
 def formulario():
@@ -23,7 +30,7 @@ def formulario():
         <form action="http://localhost:5000/" method="POST">
             <fieldset>
                 <label for="txtusuario">Usuario</label>
-                <input type="text"
+                <input type="email"
                     id="txtusuario"
                     name="usuario"
                     placeholder="Digite seu nome">
@@ -33,6 +40,22 @@ def formulario():
                 <input type="password" 
                     name="senha"
                     id="txtsenha">
+            </fieldset>
+            <fieldset>
+                <input type="date" name="datanascimento" required>
+            </fieldset>
+            <fieldset>
+                <input type="checkbox" name="chocolate">Chocolate
+                <input type="checkbox" name="coquinha">Coca-Cola
+            </fieldset>
+            <fieldset>
+                <input type="radio" name="sexo" value="masc">Masculino
+                <input type="radio" name="sexo" value="fem">Feminino
+            </fieldset>
+            <fieldset>
+                <input type="text" name="textofixo" 
+                value="ta vendo q nao altera"
+                readonly="readonly" disabled>
             </fieldset>
             <input type="submit">
             <!--
