@@ -1,0 +1,12 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+.teclado {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+#display{
+    font-size: larger;
+    font-weight: bold;
+}
