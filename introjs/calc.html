@@ -7,7 +7,7 @@
         <main>
             <input id="display" 
                 type="text" disabled>
-            <div>
+            <div class="botoes">
                 <div class="teclado">
                     <button onclick="botaoClicado(9)">9</button>
                     <button onclick="botaoClicado(8)">8</button>
@@ -19,6 +19,15 @@
                     <button onclick="botaoClicado(2)">2</button>
                     <button onclick="botaoClicado(1)">1</button>
                     <button onclick="botaoClicado(0)">0</button>
+                </div>
+                <div class="operacoes">
+                    <button onclick="botaoClicado('+')">+</button>
+                    <button onclick="botaoClicado('-')">-</button>
+                    <button onclick="botaoClicado('/')">/</button>
+                    <button onclick="botaoClicado('*')">*</button>
+                    <button onclick="resultado()">=</button>
+                    <button onclick="limpar()">C</button>
+                    <button onclick="backspace()">⬅️</button>
                 </div>
             </div>
         </main>

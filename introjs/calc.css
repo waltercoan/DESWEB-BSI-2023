@@ -1,12 +1,26 @@
+body {
+    max-width: 400px;
+    margin: auto;
+}
 main {
     display: flex;
     flex-direction: column;
 }
 .teclado {
+    width: 80%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 #display{
     font-size: larger;
     font-weight: bold;
+}
+.botoes {
+    display: flex;
+    flex-direction: row;
+}
+.operacoes {
+    width: 20%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
