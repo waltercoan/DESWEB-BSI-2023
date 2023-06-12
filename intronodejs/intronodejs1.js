@@ -1,6 +1,7 @@
 function infinito() {
     let i = 0
-    while(true){
+    //while(true){
+    while(i < 5000){
         console.log(i++)
     }
 }
