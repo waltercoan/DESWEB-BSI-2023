@@ -6,7 +6,8 @@ app.set('view engine', 'handlebars')
 app.engine('handlebars', engine(''))
 
 app.get('/',function(req,res){
-    res.send('<h1>Eu não acredito</h1>')
+    //res.send('<h1>Eu não acredito</h1>')
+    res.render('index')
 })
 
 app.listen(80,()=>{
