@@ -29,3 +29,9 @@ app.listen(80,()=>{
   console.log('http://localhost/')
 })
 ```
+
+## Instalar as dependencias do projeto
+- Digitar npm install body-parser
+- Digitar npm install bootstrap
+- Digitar npm install express-handlebars
+- Digitar npm install jquery
