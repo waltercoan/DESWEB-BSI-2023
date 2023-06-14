@@ -1,0 +1,11 @@
+{
+  "name": "projetonodejs",
+  "version": "1.0.0",
+  "description": "- Criou uma pasta chamada projetonodejs\r - Abrimos o terminal, digitamos cd projetonodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
