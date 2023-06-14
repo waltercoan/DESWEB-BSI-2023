@@ -35,3 +35,26 @@ app.listen(80,()=>{
 - Digitar npm install bootstrap
 - Digitar npm install express-handlebars
 - Digitar npm install jquery
+
+## Configurando o cola (binding) do HTML com o NodeJS
+[Link do handle bars](https://handlebarsjs.com/)
+
+```
+const express = require('express')
+const app = express()
+//Importando a engine do Handlebars
+const { engine } = require('express-handlebars')
+
+//Aplicando a engine do handlebars
+app.set('view engine', 'handlebars')
+app.engine('handlebars', engine(''))
+
+app.get('/',function(req,res){
+    res.send('<h1>Eu não acredito</h1>')
+})
+
+app.listen(80,()=>{
+  console.log('Servidor rodando...')  
+  console.log('http://localhost/')
+})
+```
