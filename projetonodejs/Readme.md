@@ -83,3 +83,26 @@ app.listen(80,()=>{
     </body>
 </html>
 ```
+
+- Alterar o codigo do index.js para renderizar o arquivo index.handlebars
+
+```
+app.get('/',function(req,res){
+    //res.send('<h1>Eu não acredito</h1>')
+    res.render('index')
+})
+```
+
+## Instalar o Bootstrap
+
+- Importar a biblioteca path do NodeJS
+```
+const path = require('path')
+```
+- Inserir o codigo abaixo no arquivo index.js depois do handlebars
+```
+app.use('/css', express.static(path.join(__dirname,'node_modules/bootstrap/dist/css')))
+app.use('/js', express.static(path.join(__dirname,'node_modules/bootstrap/dist/js')))
+app.use('/js', express.static(path.join(__dirname,'node_modules/jquery/dist')))
+app.use('/public', express.static(path.join(__dirname,'public')))`
+```
