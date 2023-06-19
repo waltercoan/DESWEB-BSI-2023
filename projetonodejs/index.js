@@ -19,6 +19,11 @@ app.get('/',function(req,res){
     res.render('index')
 })
 
+app.get('/clientes',function(req,res){
+  res.render('cliente/cliente')
+})
+
+
 app.listen(80,()=>{
   console.log('Servidor rodando...')  
   console.log('http://localhost/')
