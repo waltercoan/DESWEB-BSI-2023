@@ -99,10 +99,125 @@ app.get('/',function(req,res){
 ```
 const path = require('path')
 ```
-- Inserir o codigo abaixo no arquivo index.js depois do handlebars
+- Inserir o codigo abaixo no arquivo index.js depois do handlebars. Esse código faz com que o NodeJS disponibilize o acesso aos arquivos estáticos (CSS/JS) do Bootstrap e do JQuery
 ```
 app.use('/css', express.static(path.join(__dirname,'node_modules/bootstrap/dist/css')))
 app.use('/js', express.static(path.join(__dirname,'node_modules/bootstrap/dist/js')))
 app.use('/js', express.static(path.join(__dirname,'node_modules/jquery/dist')))
 app.use('/public', express.static(path.join(__dirname,'public')))`
+```
+
+- Alteramos o arquivo views->layouts->main.handlebars para linkar os arquivos css do Bootstrap
+```
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/public/site.css">
+```
+
+- Alteramos o arquivo views->layouts->main.handlebars para carregar os scripts Javascript
+
+```
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.js"></script>
+```
+
+- Alteramos o arquivo views->layouts->main.handlebars incluir a tag main com a classe container para que os componentes do Bootstrap sejam carregados corretamente.
+
+```
+<main class="container">
+    {{{body}}}
+</main>
+```
+
+- Escolher um modelo de  [menu do bootstrap](https://getbootstrap.com/docs/5.3/components/navbar/) e incluir o código HTML no arquivo views->layouts->main.handlebars
+
+## Criando a tela de listagem do cliente
+- Alterar o arquivo index.js para incluir o código abaixo para ao acessar a rota /clientes e carregar o html da tela do cliente
+
+```
+app.get('/clientes',function(req,res){
+  res.render('cliente/cliente')
+})
+```
+- Dentro da pasta views criar uma pasta chamada cliente
+
+- Dentro da pasta views->cliente criar um arquivo cliente.handlebars
+
+- Código inicial da tela de cliente
+
+```
+<h1>Clientes</h1>
+<hr>
+<table class="table">
+    <!-- Títulos da tabela -->
+    <thead> 
+        <tr> <!-- tr - Table Row(linha) -->
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Sexo</th>
+            <th>Telefone</th>
+        </tr>    
+    </thead>
+    <!-- Conteúdo da tabela -->
+    <tbody>
+        <tr> <!-- tr - Table Row(linha) -->
+            <td>01</td> <!-- td - Table Data(dados) -->
+            <td>Zezinho da Silva</td>
+            <td>Rua lalala 100</td>
+            <td>Masculino</td>
+            <td>5555-1234</td>
+        </tr>
+    </tbody>
+</table>
+```
+
+- Executar o projeto com o comando node index.js e acessar o endereço  [http://localhost/clientes](http://localhost/clientes) e testar se a tabela estática de clientes é apresentada na tela
+
+### Tornando a tabela de clientes dinâmica
+
+- No arquivo index.js, criar uma variável chamada fakedata com uma lista de objetos JSON com os dados dos clientes
+
+```
+const fakedata = [
+  {
+      id: 1,
+      nome: 'Zezinho da Silva',
+      endereco: 'Rua lalalala 100',
+      sexo: 'Masculino',
+      telefone: '5555-1234'
+  },
+  {
+    id: 2,
+    nome: 'Mariazinha',
+    endereco: 'Rua lelleelel 200',
+    sexo: 'Feminino',
+    telefone: '5555-5432'
+  }
+]
+```
+
+- Alterar o código que carrega a tela dos clientes para além de carregar a tela, enviar os dados da variável fakedata para a tela
+
+```
+app.get('/clientes',function(req,res){
+  res.render('cliente/cliente', 
+      {listaclientes: fakedata})
+})
+```
+
+- Alterar o código HTML do arquivo cliente.handlebars para receber a lista de clientes e fazer um laço de repetição FOR para inserir os dados dos clientes no layout da tabela do HTML
+
+```
+    <!-- Conteúdo da tabela -->
+    <tbody>
+        {{#each listaclientes}}
+        <tr>
+            <td>{{this.id}}</td>
+            <td>{{this.nome}}</td>
+            <td>{{this.endereco}}</td>
+            <td>{{this.sexo}}</td>
+            <td>{{this.telefone}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
 ```

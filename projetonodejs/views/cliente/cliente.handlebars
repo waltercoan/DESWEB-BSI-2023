@@ -13,12 +13,14 @@
     </thead>
     <!-- Conteúdo da tabela -->
     <tbody>
+        {{#each listaclientes}}
         <tr>
-            <td>01</td>
-            <td>Zezinho da Silva</td>
-            <td>Rua lalala 100</td>
-            <td>Masculino</td>
-            <td>5555-1234</td>
+            <td>{{this.id}}</td>
+            <td>{{this.nome}}</td>
+            <td>{{this.endereco}}</td>
+            <td>{{this.sexo}}</td>
+            <td>{{this.telefone}}</td>
         </tr>
+        {{/each}}
     </tbody>
 </table>
