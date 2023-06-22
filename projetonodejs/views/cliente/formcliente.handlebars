@@ -1,0 +1,30 @@
+<h2>Cliente</h2>
+<hr>
+
+<form action="/clientes/save" method="POST">
+    <div class="form-group">
+        <label for="txtnome">Nome:</label>
+        <input type="text" class="form-control" 
+            id="txtnome" name="nome" required >
+    </div>
+
+    <div class="form-group">
+        <label for="txtendereco">Endereço:</label>
+        <input type="text" class="form-control" 
+            id="txtendereco" name="endereco" required >
+    </div>
+
+    <div class="form-group">
+        <label for="txtsexo">Sexo:</label>
+        <input type="text" class="form-control" 
+            id="txtsexo" name="sexo" required >
+    </div>
+
+    <div class="form-group">
+        <label for="txttelefone">Telefon:</label>
+        <input type="text" class="form-control" 
+            id="txttelefone" name="telefone" required >
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>

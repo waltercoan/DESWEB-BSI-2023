@@ -221,3 +221,74 @@ app.get('/clientes',function(req,res){
         {{/each}}
     </tbody>
 ```
+
+### Tela para incluir clientes
+- Alterar o arquivo views->cliente->cliente.handlebars para incluir no HTML o link(botão do bootstrap) para o formulário de cadastro novo
+```
+<a href="./clientes/novo" class="btn btn-primary">Novo</a>
+```
+- Alterar o arquivo index.js para incluir a nova rota /clientes/novo e carregar o arquivo html com o formulário
+```
+app.get('/clientes/novo', function(req,res){
+  res.render('cliente/formcliente')
+})
+```
+- Criar um novo arquivo chamado formcliente.handlebars dentro da pasta views->cliente
+- Construir o código do formulário HTML dentro do arquivo formcliente.handlebars. O tag FORM deve ter como valor do action a rota /clientes/save e utilizar o method POST
+```
+<h2>Cliente</h2>
+<hr>
+
+<form action="/clientes/save" method="POST">
+    <div class="form-group">
+        <label for="txtnome">Nome:</label>
+        <input type="text" class="form-control" 
+            id="txtnome" name="nome" required >
+    </div>
+
+    <div class="form-group">
+        <label for="txtendereco">Endereço:</label>
+        <input type="text" class="form-control" 
+            id="txtendereco" name="endereco" required >
+    </div>
+
+    <div class="form-group">
+        <label for="txtsexo">Sexo:</label>
+        <input type="text" class="form-control" 
+            id="txtsexo" name="sexo" required >
+    </div>
+
+    <div class="form-group">
+        <label for="txttelefone">Telefon:</label>
+        <input type="text" class="form-control" 
+            id="txttelefone" name="telefone" required >
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+```
+- Alterar o arquivo index.js para importar a biblioteca body-parser e vincular ela ao express
+```
+const bodyparser = require('body-parser')
+
+app.use(bodyparser.urlencoded({ extended:false}))
+```
+- Alterar o arquivo index.js para incluir o código da rota /clientes/save que deverá receber os dados do formulário HTML, criar um novo objeto Javascript, inserir na lista fakedata e redirecionar o cliente para o endereço /clientes
+```
+app.post('/clientes/save', function(req,res){
+  //Encontra o maior valor do campo ID entre todos os clientes
+  let maiorId = Math.max(...fakedata.map(o => o.id))
+  //Cria um objeto com os dados do formulário
+  let novoCliente = {
+    id: maiorId + 1,
+    nome: req.body.nome,
+    endereco: req.body.endereco,
+    sexo: req.body.sexo,
+    telefone: req.body.telefone
+  }
+  //Insere o novo cliente na lista fakedata
+  fakedata.push(novoCliente)
+  //Redireciona o navegador do cliente para a tela /clientes
+  res.redirect('/clientes')
+})
+```
