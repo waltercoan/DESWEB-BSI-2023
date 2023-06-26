@@ -62,6 +62,15 @@ app.post('/clientes/save', function(req,res){
 
 })
 
+app.get('/clientes/alterar/:id', function(req,res){
+  let id = req.params['id']
+  
+  //Procura um cliente pelo id
+  let umcliente = fakedata.find(o => o.id == id)
+  
+  res.render('cliente/formcliente', {cliente: umcliente})
+})
+
 
 app.listen(80,()=>{
   console.log('Servidor rodando...')  
