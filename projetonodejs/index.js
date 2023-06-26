@@ -49,17 +49,27 @@ app.get('/clientes/novo', function(req,res){
 
 app.post('/clientes/save', function(req,res){
   
-  let maiorId = Math.max(...fakedata.map(o => o.id))
-  let novoCliente = {
-    id: maiorId + 1,
-    nome: req.body.nome,
-    endereco: req.body.endereco,
-    sexo: req.body.sexo,
-    telefone: req.body.telefone
-  }
-  fakedata.push(novoCliente)
-  res.redirect('/clientes')
+  //procurar pelo cliente no fakedata
+  let clienteantigo = 
+      fakedata.find(o => o.id == req.body.id)
 
+  if(clienteantigo != undefined){
+    clienteantigo.nome = req.body.nome
+    clienteantigo.endereco = req.body.endereco
+    clienteantigo.sexo = req.body.sexo
+    clienteantigo.telefone = req.body.telefone
+  }else{
+    let maiorId = Math.max(...fakedata.map(o => o.id))
+    let novoCliente = {
+      id: maiorId + 1,
+      nome: req.body.nome,
+      endereco: req.body.endereco,
+      sexo: req.body.sexo,
+      telefone: req.body.telefone
+    }
+    fakedata.push(novoCliente)
+  }
+  res.redirect('/clientes')
 })
 
 app.get('/clientes/alterar/:id', function(req,res){
