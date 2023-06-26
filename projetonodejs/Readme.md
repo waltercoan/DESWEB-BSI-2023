@@ -292,3 +292,95 @@ app.post('/clientes/save', function(req,res){
   res.redirect('/clientes')
 })
 ```
+
+### Tela para alterar clientes
+- Alterar o código da tela views->cliente->cliente.handlebars para incluir o botão ALTERAR
+```
+<td><a href="/clientes/alterar/{{this.id}}" 
+            class="btn btn-warning">Alterar</a>
+```
+- Alterar o código do arquivo index.js para receber a request, procurar o objeto na lista fakedata e retornar o objeto para o formulário 
+```
+app.get('/clientes/alterar/:id', function(req,res){
+  let id = req.params['id']
+  
+  //Procura um cliente pelo id
+  let umcliente = fakedata.find(o => o.id == id)
+  
+  res.render('cliente/formcliente', {cliente: umcliente})
+})
+```
+- Alterar o código do views->cliente->formcliente.handlebars para fazer o binding dos campos do objeto cliente para os inputs do HTML
+```
+<h2>Cliente</h2>
+<hr>
+
+<form action="/clientes/save" method="POST">
+
+    <div class="form-group">
+        <label for="txtnome">Nome:</label>
+        <input type="text" class="form-control" 
+            <!-- BINDING -->
+            value="{{cliente.nome}}"
+            id="txtnome" name="nome" required >
+    </div>
+
+    <div class="form-group">
+        <label for="txtendereco">Endereço:</label>
+        <input type="text" class="form-control"
+            <!-- BINDING -->         
+            value="{{cliente.endereco}}"
+            id="txtendereco" name="endereco" required >
+    </div>
+
+    <div class="form-group">
+        <label for="txtsexo">Sexo:</label>
+        <input type="text" class="form-control"
+            <!-- BINDING -->
+            value="{{cliente.sexo}}"
+            id="txtsexo" name="sexo" required >
+    </div>
+
+    <div class="form-group">
+        <label for="txttelefone">Telefon:</label>
+        <input type="text" class="form-control"
+            <!-- BINDING -->
+            value="{{cliente.telefone}}"
+            id="txttelefone" name="telefone" required >
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+```
+- Alterar o index.js para que a rota SAVE faça o código de ALTERAR e INCLUIR novos registros
+```
+app.post('/clientes/save', function(req,res){
+  
+  //procurar pelo cliente no fakedata
+  let clienteantigo = 
+      fakedata.find(o => o.id == req.body.id)
+
+  if(clienteantigo != undefined){
+    clienteantigo.nome = req.body.nome
+    clienteantigo.endereco = req.body.endereco
+    clienteantigo.sexo = req.body.sexo
+    clienteantigo.telefone = req.body.telefone
+  }else{
+    let maiorId = Math.max(...fakedata.map(o => o.id))
+    let novoCliente = {
+      id: maiorId + 1,
+      nome: req.body.nome,
+      endereco: req.body.endereco,
+      sexo: req.body.sexo,
+      telefone: req.body.telefone
+    }
+    fakedata.push(novoCliente)
+  }
+  res.redirect('/clientes')
+})
+```
+- Alterar o arquivo formcliente.handlebars para incluir um campo do tipo hidden no formulário para enviar o ID do cliente
+```
+<input type="hidden" name="id" 
+    value="{{cliente.id}}">
+```

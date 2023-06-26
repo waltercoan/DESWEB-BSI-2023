@@ -23,7 +23,10 @@
             <td>{{this.sexo}}</td>
             <td>{{this.telefone}}</td>
             <td><a href="/clientes/alterar/{{this.id}}" 
-            class="btn btn-warning">Alterar</a></td>
+            class="btn btn-warning">Alterar</a>
+                <button class="btn btn-danger js-delete"
+                        data-id="{{this.id}}">Excluir</button>
+            </td>
         </tr>
         {{/each}}
     </tbody>
