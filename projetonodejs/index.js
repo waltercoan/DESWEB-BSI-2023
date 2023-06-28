@@ -81,6 +81,17 @@ app.get('/clientes/alterar/:id', function(req,res){
   res.render('cliente/formcliente', {cliente: umcliente})
 })
 
+app.get('/clientes/delete/:id', function(req,res){
+  //buscando o cliente pelo id
+  let cliente = fakedata.find(o => o.id == req.params['id'])
+  //qual a posição (ORDEM) do cliente na lista
+  let posicaocliente = fakedata.indexOf(cliente)
+  if (posicaocliente > -1){ //achou a posicao do cliente
+    fakedata.splice(posicaocliente,1) //remove o cliente da lista
+  }
+  res.redirect('/clientes')
+})
+
 
 app.listen(80,()=>{
   console.log('Servidor rodando...')  
